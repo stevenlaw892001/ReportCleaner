@@ -1,11 +1,14 @@
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
-# Configuration: Define folder paths relative to the project directory
-BASE_DIR = Path(__file__).parent  # Get the directory of this script
-RECORD_FOLDER = BASE_DIR / "data" / "reports"  # Directory for report files
-DONE_FOLDER = BASE_DIR / "data" / "done"  # Directory for processed reports
+# Load environment variables from .env file
+load_dotenv()
+
+# Configuration: Define folder paths from environment variables
+RECORD_FOLDER = Path(os.getenv("RECORD_FOLDER", "./data/reports"))
+DONE_FOLDER = Path(os.getenv("DONE_FOLDER", "./data/done"))
 
 def get_last_week_range():
     """
