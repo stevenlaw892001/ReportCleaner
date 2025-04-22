@@ -17,16 +17,39 @@ A Python tool for automating the cleanup of outdated system and network report f
 ## Installation
 
 ### Prerequisites
+
 - Python 3.6 or higher
-- No external dependencies required
+- Required package: `python-dotenv`
 
 ### Steps
+
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/ReportCleaner.git
    cd ReportCleaner
    ```
-2. Ensure Python is installed:
+
+2. Install the required package:
+
+   ```bash
+   pip install python-dotenv
+   ```
+
+3. Configure environment variables:
+
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` to specify your folder paths, e.g.:
+     ```
+     RECORD_FOLDER=./data/reports
+     DONE_FOLDER=./data/done
+     ```
+
+4. Ensure Python is installed:
+
    ```bash
    python --version
    ```
@@ -34,21 +57,24 @@ A Python tool for automating the cleanup of outdated system and network report f
 ## Usage
 
 1. **Prepare the Directory Structure**:
-   - The script expects a `data/reports/` folder for report files and a `data/done/` folder for processed files, relative to the script's location.
+
+   - The script expects a `data/reports/` folder for report files and a `data/done/` folder for processed files, as specified in `.env`.
    - These folders are automatically created if they do not exist.
 
 2. **Run the Script**:
+
    ```bash
    python report_cleaner.py
    ```
 
-3. **Expected Output**:
-   The script will:
+3. **Expected Output**: The script will:
+
    - Identify files from the previous week (e.g., `SystemA CPU Utilization 24Mar2025-28Mar2025.xls`).
    - Delete matching files in the `data/reports/` and `data/done/` folders.
    - Print feedback for each file (e.g., "Deleted: ...", "File not found: ...").
 
    Example output:
+
    ```
    Deleting files in data/reports...
    File not found: data/reports/SystemA CPU Utilization 24Mar2025-28Mar2025.xls
@@ -58,12 +84,15 @@ A Python tool for automating the cleanup of outdated system and network report f
    ```
 
 ## Example File Names
+
 The script targets files with names like:
+
 - `SystemA CPU Utilization 24Mar2025-28Mar2025.xls`
 - `Network Traffic for SystemA 2025-03-30.pdf`
 - `SystemB Disk Utilization 24Mar2025-28Mar2025.xlsx`
 
 ## Project Structure
+
 ```
 ReportCleaner/
 ├── data/                    # Placeholder for report files (not tracked in Git)
@@ -71,11 +100,15 @@ ReportCleaner/
 │   └── done/               # Directory for processed files
 ├── report_cleaner.py       # Main Python script
 ├── README.md               # Project documentation
-└── .gitignore              # Git ignore rules
+├── .env.example            # Environment variable template
+├── .gitignore              # Git ignore rules
+└── CODE_OF_CONDUCT.md      # Community standards
 ```
 
 ## Technical Highlights
+
 This project showcases the following skills:
+
 - **File System Operations**: Using `pathlib` for cross-platform file and directory management.
 - **Date Manipulation**: Dynamic generation of date ranges with `datetime` and `timedelta`.
 - **Error Handling**: Robust try-except blocks to handle file deletion errors gracefully.
@@ -83,7 +116,9 @@ This project showcases the following skills:
 - **Automation**: Simplifies repetitive tasks, applicable to system administration or data management workflows.
 
 ## Contributing
+
 Contributions are welcome! Please:
+
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/your-feature`).
 3. Commit your changes (`git commit -m 'Add your feature'`).
@@ -91,7 +126,9 @@ Contributions are welcome! Please:
 5. Open a pull request.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Contact
+
 For questions or suggestions, feel free to open an issue or contact me via GitHub.
